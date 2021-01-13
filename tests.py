@@ -14,17 +14,17 @@ class MyTestCase(unittest.TestCase):
 
 
     def setUp(self):
-        driver = webdriver.Chrome(executable_path='c:/seleniumDriver/chromedriver.exe')
-        driver.implicitly_wait(10)
+        self.driver = webdriver.Chrome(executable_path='c:/seleniumDriver/chromedriver.exe')
+        self.driver.implicitly_wait(10)
+        self.driver.get("https://www.advantageonlineshopping.com/")
+        self.driver.maximize_window()
         self.login()
 
 
     def login(self):
-        driver.get("https://www.advantageonlineshopping.com/")
-        driver.maximize_window()
-        driver.find_element_by_css_selector("#menuUser").click()
-        driver.find_element_by_css_selector(".ng-touched").send_keys("tomoz")
-        driver.find_element_by_css_selector("input[name = 'password']").send_keys("tomOz123")
-        driver.find_element_by_css_selector("#sign_in_btnundefined").click()
+        mainPage.usermenu().click()
+        mainPage.usernameField()
+        mainPage.passwordField()
+        mainPage.signInBtn().click()
 
 

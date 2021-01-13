@@ -11,6 +11,8 @@ class mainPage:
     def usermenu(self):
         return self.driver.find_element_by_css_selector("#menuUser")
     def usernameField(self):
-        return driver.find_element_by_css_selector(".ng-touched").send_keys("tomoz")
+        return self.driver.find_element_by_css_selector(".ng-touched").send_keys("tomoz")
     def passwordField(self):
-        return driver.find_element_by_css_selector("input[name = 'password']").send_keys("tomOz123")
+        return self.driver.find_element_by_css_selector("input[name = 'password']").send_keys("tomOz123")
+    def SignInBtn(self):
+        return self.driver.find_element_by_css_selector("#sign_in_btnundefined")
