@@ -22,3 +22,5 @@ class MainPage:
     def loggedUserName(self):
         return self.driver.find_element_by_css_selector("span.hi-user:nth-child(1)").text
 
+    def tablets(self):
+        return self.driver.find_element_by_id("#tabletsImg")
