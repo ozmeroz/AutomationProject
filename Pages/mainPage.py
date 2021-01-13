@@ -23,7 +23,6 @@ class MainPage:
         return self.driver.find_element_by_css_selector("span.hi-user:nth-child(1)").text
 
     def tablets(self):
-        return self.driver.find_element_by_id("#tabletsImg")
         return self.driver.find_element_by_id("tabletsImg")
 
     def tablets_elitepad(self):
@@ -40,6 +39,17 @@ class MainPage:
 
     def elitepad_color_gray(self):
         return self.driver.find_element_by_class("span.GRAY")
-    def
+
+    def elitpad_plus(self):
+        return self.driver.find_element_by_class("plus")
+
+    def elitpad_minus(self):
+        return self.driver.find_element_by_class("minus")
+
+    def elitpad_add_to_cart(self):
+        return self.driver.find_element_by_class("roboto-medium")
+
+    def elitpad_to_tablets(self):
+        return self.driver.find_element_by_css_selector("div.uiview>nav>a.ng-scope")
 
 
