@@ -24,7 +24,7 @@ class MainPage:
 
     def tablets(self):
         return self.driver.find_element_by_id("tabletsImg")
-
+           #טאבלטים
     def tablets_elitepad(self):
         return self.driver.find_element_by_id('img[id="16"]')
 
@@ -33,17 +33,17 @@ class MainPage:
 
     def tablets_HP_PRO(self):
         return self.driver.find_element_by_id('img[id="18"]')
-
+    #אליטפד פנימי
     def elitepad_color_blue(self):
-        return self.driver.find_element_by_class("span.BLUE")
+        return self.driver.find_element_by_class("BLUE")
 
-    def elitepad_color_gray(self):
-        return self.driver.find_element_by_class("span.GRAY")
+    def product_color_gray(self):
+        return self.driver.find_element_by_class("GRAY")
 
-    def elitpad_plus(self):
+    def plus(self):
         return self.driver.find_element_by_class("plus")
 
-    def elitpad_minus(self):
+    def minus(self):
         return self.driver.find_element_by_class("minus")
 
     def elitpad_add_to_cart(self):
@@ -51,5 +51,10 @@ class MainPage:
 
     def elitpad_to_tablets(self):
         return self.driver.find_element_by_css_selector("div.uiview>nav>a.ng-scope")
+
+    def HP_elite_color_black(self):
+        return self.driver.find_element_by_class("BLACK")
+
+
 
 
