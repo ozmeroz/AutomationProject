@@ -46,13 +46,13 @@ class MainPage:
     def minus(self):
         return self.driver.find_element_by_class("minus")
 
-    def elitpad_add_to_cart(self):
+    def add_to_cart(self):
         return self.driver.find_element_by_class("roboto-medium")
 
     def elitpad_to_tablets(self):
         return self.driver.find_element_by_css_selector("div.uiview>nav>a.ng-scope")
 
-    def HP_elite_color_black(self):
+    def product_color_black(self):
         return self.driver.find_element_by_class("BLACK")
 
 
