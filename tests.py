@@ -9,8 +9,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 import unittest
 from Pages import mainPage
 class MyTestCase(unittest.TestCase):
-    def test_something(self):
-        self.assertEqual(True, False)
 
 
     def setUp(self):
