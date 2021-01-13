@@ -19,3 +19,6 @@ class MainPage:
         return self.driver.find_element_by_css_selector("input[name = 'password']").send_keys("tomOz123")
     def SignInBtn(self):
         return self.driver.find_element_by_css_selector("#sign_in_btnundefined")
+    def loggedUserName(self):
+        return self.driver.find_element_by_css_selector("span.hi - user").text
+

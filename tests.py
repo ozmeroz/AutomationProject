@@ -20,12 +20,14 @@ class MyTestCase(unittest.TestCase):
         self.mainPage = MainPage(self.driver)
         self.login()
 
+    def tearDown(self):
+        self.driver.close()
 
     def login(self):
-        self.MainPage.usermenu().click()
-        self.MainPage.usernameField()
-        self.MainPage.passwordField()
-        self.MainPage.signInBtn().click()
+        self.mainPage.usermenu().click()
+        self.mainPage.usernameField()
+        self.mainPage.passwordField()
+        self.mainPage.signInBtn().click()
+        self.assertTrue(self.mainPage.loggedUserName()=='tomoz')
 
-    def test_something(self):
-        self.assertEqual(True, True)
+
