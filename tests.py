@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.action_chains import ActionChains
 import unittest
-from Pages import MainPage
+from Pages.mainPage import MainPage
 class MyTestCase(unittest.TestCase):
 
 
