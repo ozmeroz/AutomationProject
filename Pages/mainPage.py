@@ -24,3 +24,21 @@ class MainPage:
 
     def tablets(self):
         return self.driver.find_element_by_id("#tabletsImg")
+        return self.driver.find_element_by_id("tabletsImg")
+
+    def tablets_elitepad(self):
+        return self.driver.find_element_by_id('img[id="16"]')
+
+    def tablets_HPelite(self):
+        return self.driver.find_element_by_id('img[id="17"]')
+
+    def tablets_HP_PRO(self):
+        return self.driver.find_element_by_id('img[id="18"]')
+
+    def elitepad_color_blue(self):
+        return self.driver.find_element_by_class("span.BLUE")
+
+    def elitepad_color_gray(self):
+        return self.driver.find_element_by_class("span.GRAY")
+
+
