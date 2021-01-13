@@ -40,5 +40,6 @@ class MainPage:
 
     def elitepad_color_gray(self):
         return self.driver.find_element_by_class("span.GRAY")
+    def
 
 
