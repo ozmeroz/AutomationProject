@@ -14,11 +14,11 @@ class MainPage:
     def usermenu(self):
         return self.driver.find_element_by_css_selector("#menuUser")
     def usernameField(self):
-        return self.driver.find_element_by_css_selector(".ng-touched").send_keys("tomoz")
+        return self.driver.find_element_by_css_selector("input[name='username']").send_keys("tomoz")
     def passwordField(self):
-        return self.driver.find_element_by_css_selector("input[name = 'password']").send_keys("tomOz123")
-    def SignInBtn(self):
-        return self.driver.find_element_by_css_selector("#sign_in_btnundefined")
+        return self.driver.find_element_by_css_selector("input[name='password']").send_keys("tomOz123")
+    def signInBtn(self):
+        return self.driver.find_element_by_css_selector("button[id='sign_in_btnundefined']")
     def loggedUserName(self):
-        return self.driver.find_element_by_css_selector("span.hi - user").text
+        return self.driver.find_element_by_css_selector("span.hi-user:nth-child(1)").text
 

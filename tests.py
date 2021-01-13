@@ -17,17 +17,22 @@ class MyTestCase(unittest.TestCase):
         self.driver.implicitly_wait(10)
         self.driver.get("https://www.advantageonlineshopping.com/")
         self.driver.maximize_window()
-        self.mainPage = MainPage(self.driver)
-        self.login()
+        self.main = MainPage(self.driver)
+        #self.login()
 
     def tearDown(self):
         self.driver.close()
 
-    def login(self):
-        self.mainPage.usermenu().click()
-        self.mainPage.usernameField()
-        self.mainPage.passwordField()
-        self.mainPage.signInBtn().click()
-        self.assertTrue(self.mainPage.loggedUserName()=='tomoz')
+    def test_login(self):
+        time.sleep(5)
+        self.main.usermenu().click()
+        time.sleep(5)
+        self.main.usernameField()
+        time.sleep(1)
+        self.main.passwordField()
+        time.sleep(5)
+        self.main.signInBtn().click()
+        time.sleep(5)
+        self.assertTrue(self.main.loggedUserName() == 'tomoz')
 
 
