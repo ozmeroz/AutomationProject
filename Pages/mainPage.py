@@ -6,7 +6,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.action_chains import ActionChains
-class mainPage:
+class MainPage:
+
+    def __init__(self, driver):
+        self.driver = driver
 
     def usermenu(self):
         return self.driver.find_element_by_css_selector("#menuUser")
