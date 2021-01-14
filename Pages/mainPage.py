@@ -37,38 +37,11 @@ class MainPage:
         hover = self.actions.move_to_element(element_to_hover)
         hover.perform()
 
-    def tablets(self):
-        return self.driver.find_element_by_id("tabletsImg")
-           #טאבלטים
-    def tablets_elitepad(self):
-        'jumps to the specific product page'
-        return self.driver.get("https://www.advantageonlineshopping.com/#/product/16")
 
-    def tablets_HPelite(self):
-        'jumps to the specific product page'
-        return self.driver.get("https://www.advantageonlineshopping.com/#/product/17")
 
-    def tablets_HP_PRO(self):
-        'jumps to the specific product page'
-        return self.driver.get("https://www.advantageonlineshopping.com/#/product/18")
-    #אליטפד פנימי
-    def elitepad_color_blue(self):
-        return self.driver.find_element_by_class("BLUE")
 
-    def product_color_gray(self):
-        return self.driver.find_element_by_class("GRAY")
-
-    def plus(self):
-        return self.driver.find_element_by_css_selector("div[class='plus']")
-
-    def minus(self):
-        return self.driver.find_element_by_css_selector("div[class='minus']")
-
-    def add_to_cart(self):
-        return self.driver.find_element_by_css_selector("button[translate='ADD_TO_CART']")
-
-    def elitpad_to_tablets(self):
-        return self.driver.find_element_by_css_selector("div.uiview>nav>a.ng-scope")
+    ######def elitpad_to_tablets(self):
+        #####return self.driver.find_element_by_css_selector("div.uiview>nav>a.ng-scope")
 
     def product_color_black(self):
         return self.driver.find_element_by_class("BLACK")

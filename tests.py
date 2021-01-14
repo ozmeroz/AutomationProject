@@ -7,7 +7,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.action_chains import ActionChains
 import unittest
+from Pages.categoryPage import CategoryPage
 from Pages.mainPage import MainPage
+from Pages.productPage import ProductPage
+from Pages.tablets import Tablets
 class MyTestCase(unittest.TestCase):
 
 
@@ -20,6 +23,9 @@ class MyTestCase(unittest.TestCase):
         self.main = MainPage(self.driver)
         self.actions = ActionChains(self.driver)
         self.wait = WebDriverWait(self.driver, 10)
+        self.category=CategoryPage(self.driver)
+        self.product=ProductPage(self.driver)
+        self.tablets=Tablets(self.driver)
 
 
     def tearDown(self):
@@ -31,31 +37,31 @@ class MyTestCase(unittest.TestCase):
         # self.main.usernameField() #login
         # self.main.passwordField() #login
         # self.main.signInBtn().click() #login
-        self.main.tablets().click() #enter tablets category
-        self.main.tablets_elitepad() #enter specific product
-        self.main.plus().click() #add quantity
-        self.main.add_to_cart().click() #add to cart
-        self.main.tablets_HPelite() #enter specific product
-        self.main.plus().click() #add quantity
-        self.main.plus().click() #add quantity
-        self.main.add_to_cart().click() #add to cart
+        self.category.tablets_category().click() #enter tablets category
+        self.tablets.tablets_elitepad() #enter specific product
+        self.product.plus().click() #add quantity
+        self.product.add_to_cart().click() #add to cart
+        self.tablets.tablets_HPelite() #enter specific product
+        self.product.plus().click() #add quantity
+        self.product.plus().click() #add quantity
+        self.product.add_to_cart().click() #add to cart
         self.main.hoverCart() #hover over cart button to open cart summary
         self.assertIn("5", self.main.checkTotalItems())
 
     def test_ex2(self):
-        self.main.tablets().click()  # enter tablets category
-        self.main.tablets_elitepad()  # enter specific product
-        self.main.plus().click()  # add quantity
-        self.main.add_to_cart().click()  # add to cart
-        self.main.tablets_HPelite()  # enter specific product
-        self.main.plus().click()  # add quantity
-        self.main.plus().click()  # add quantity
-        self.main.add_to_cart().click()  # add to cart
-        self.main.tablets_HP_PRO()
-        self.main.plus().click()  # add quantity
-        self.main.plus().click()  # add quantity
-        self.main.plus().click()  # add quantity
-        self.main.add_to_cart().click()  # add to cart
+        self.category.tablets_category().click()  # enter tablets category
+        self.tablets.tablets_elitepad()  # enter specific product
+        self.product.plus().click()  # add quantity
+        self.product.add_to_cart().click()  # add to cart
+        self.tablets.tablets_HPelite()  # enter specific product
+        self.product.plus().click()  # add quantity
+        self.product.plus().click()  # add quantity
+        self.product.add_to_cart().click()  # add to cart
+        self.tablets.tablets_HP_PRO()
+        self.product.plus().click()  # add quantity
+        self.product.plus().click()  # add quantity
+        self.product.plus().click()  # add quantity
+        self.product.add_to_cart().click()  # add to cart
         text1 =self.main.miniCartTable(2, 1).text
         self.assertIn("HP ELITEPAD 1000 G2", text1) #name
         self.assertIn("BLUE", text1) #color
