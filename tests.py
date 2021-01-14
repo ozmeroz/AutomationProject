@@ -86,7 +86,7 @@ class MyTestCase(unittest.TestCase):
         signeduser=self.main.signedUserElement()
         self.assertTrue("tomoz"==signeduser.text) #check if signed user is our username
         self.main.logOut() #click logout
-        self.assertNotIn(signeduser, self.main.getHeaderElements())
+        self.assertNotIn(signeduser, self.main.getHeaderElements()) #check if signeduser name is not in all Header Elements list
 
 
 
