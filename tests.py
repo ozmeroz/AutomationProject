@@ -78,6 +78,23 @@ class MyTestCase(unittest.TestCase):
 
 
 
+    def test_ex10(self):
+        self.main.usermenu().click() #login
+        self.main.usernameField() #login
+        self.main.passwordField() #login
+        self.main.signInBtn().click() #login
+        signeduser=self.main.signedUserElement()
+        self.assertTrue("tomoz"==signeduser.text) #check if signed user is our username
+        self.main.logOut() #click logout
+        self.assertNotIn(signeduser, self.main.getHeaderElements())
+
+
+
+
+
+
+
+
 
 
 
