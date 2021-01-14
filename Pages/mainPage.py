@@ -44,6 +44,8 @@ class MainPage:
         hover = self.actions.move_to_element(element_to_hover)
         hover.perform()
 
+    def enterCartPage(self):
+        return self.driver.find_element_by_css_selector("#shoppingCartLink")
 
 
 
@@ -64,15 +66,27 @@ class MainPage:
         self.hoverCart()
         #self.driver.find_element_by_css_selector("table[ng-show='cart.productsInCart.length > 0']")
         table=self.driver.find_element_by_xpath("//tool-tip-cart/div/table")
+        print(table.text)
+
         rows = table.find_elements_by_tag_name("tr")
         for row in rows:
-            if rows.index(row)==rowindex:
+            if rows.index(row) == rowindex:
                 cells = row.find_elements_by_tag_name("td")
                 for cell in cells:
                     if cells.index(cell)==cellindex:
+                        print(cell)
                         return cell
 
 
+    def miniCart(self):
+        'function that gets the table by row texts, one row to index'
+        list = []
+        self.hoverCart()
+        table = self.driver.find_element_by_xpath("//tool-tip-cart/div/table")
+        rows = table.find_elements_by_tag_name("tr")
+        for row in rows:
+            list.append(row.text)
+        return list
 
 
 

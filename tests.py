@@ -38,10 +38,10 @@ class MyTestCase(unittest.TestCase):
         # self.main.passwordField() #login
         # self.main.signInBtn().click() #login
         self.category.tablets_category().click() #enter tablets category
-        self.tablets.tablets_elitepad() #enter specific product
+        self.product.jumpToProductPage(16) #enter specific product
         self.product.plus().click() #add quantity
         self.product.add_to_cart().click() #add to cart
-        self.tablets.tablets_HPelite() #enter specific product
+        self.product.jumpToProductPage(17) #enter specific product
         self.product.plus().click() #add quantity
         self.product.plus().click() #add quantity
         self.product.add_to_cart().click() #add to cart
@@ -50,38 +50,41 @@ class MyTestCase(unittest.TestCase):
 
     def test_ex2(self):
         self.category.tablets_category().click()  # enter tablets category
-        self.tablets.tablets_elitepad()  # enter specific product
+        self.product.jumpToProductPage(16)  # enter specific product
         self.product.plus().click()  # add quantity
         self.product.add_to_cart().click()  # add to cart
-        self.tablets.tablets_HPelite()  # enter specific product
-        self.product.plus().click()  # add quantity
-        self.product.plus().click()  # add quantity
-        self.product.add_to_cart().click()  # add to cart
-        self.tablets.tablets_HP_PRO()
-        self.product.plus().click()  # add quantity
+        self.product.jumpToProductPage(17)  # enter specific product
         self.product.plus().click()  # add quantity
         self.product.plus().click()  # add quantity
         self.product.add_to_cart().click()  # add to cart
-        text1 =self.main.miniCartTable(2, 1).text
-        self.assertIn("HP ELITEPAD 1000 G2", text1) #name
-        self.assertIn("BLUE", text1) #color
-        self.assertIn("QTY: 2", text1) #quantity
-        price1 = self.main.miniCartTable(2, 2).text
-        self.assertIn("$2,018.00", price1)  # price
-        text2=self.main.miniCartTable(1,1).text
-        self.assertIn("HP ELITE X2 1011 G1", text2)  # name
-        self.assertIn("BLACK", text2)  # color
-        self.assertIn("QTY: 3", text2)  # quantity
-        price2=self.main.miniCartTable(1, 2).text
-        self.assertIn("$3,837.00", price2)  # price
-        text3 =self.main.miniCartTable(0, 1).text
-        self.assertIn("HP PRO TABLET 608 G1", text3)  # name
-        self.assertIn("BLACK", text3)  # color
-        self.assertIn("QTY: 4", text3)  # quantity
-        # need to check why price3 in not readen to fix this check <<-----------
-        price3 = self.main.miniCartTable(0, 2).text
-        self.assertIn("$1,916.00", price3)  # price
+        self.product.jumpToProductPage(18) # enter specific product
+        self.product.plus().click()  # add quantity
+        self.product.plus().click()  # add quantity
+        self.product.plus().click()  # add quantity
+        self.product.add_to_cart().click()  # add to cart
+        list_pro = self.main.miniCart()
+        self.assertIn("HP ELITEPAD 1000 G2", list_pro[2]) #name
+        self.assertIn("BLUE", list_pro[2]) #color
+        self.assertIn("QTY: 2", list_pro[2]) #quantity
+        self.assertIn("$2,018.00", list_pro[2]) #price
+        self.assertIn("HP ELITE X2 1011 G1", list_pro[1])  # name
+        self.assertIn("BLACK", list_pro[1])  # color
+        self.assertIn("QTY: 3", list_pro[1])  # quantity
+        self.assertIn("$3,837.00", list_pro[1])  # price
+        self.assertIn("HP PRO TABLET 608 G1", list_pro[0])  # name
+        self.assertIn("BLACK", list_pro[0])  # color
+        self.assertIn("QTY: 4", list_pro[0])  # quantity
+        self.assertIn("$1,916.00", list_pro[0])  # price
 
+
+
+    def test_ex_4(self):
+        self.product.jumpToProductPage(7)
+        self.product.add_to_cart().click()
+        self.main.enterCartPage().click()
+        self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#checkOutButton"))) #helps to wait for page to load
+        currentPage =self.driver.find_element_by_xpath("//nav/a[2]").text
+        self.assertTrue(currentPage=="SHOPPING CART")
 
 
     def test_ex10(self):
@@ -93,7 +96,6 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue("tomoz"==signeduser.text) #check if signed user is our username
         self.main.logOut() #click logout
         self.assertNotIn(signeduser, self.main.getHeaderElements()) #check if signeduser name is not in all Header Elements list
-
 
 
 
