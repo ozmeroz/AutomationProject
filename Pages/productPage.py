@@ -22,3 +22,6 @@ class ProductPage:
 
     def add_to_cart(self):
         return self.driver.find_element_by_css_selector("button[translate='ADD_TO_CART']")
+
+    def jumpToProductPage(self, id):
+        return self.driver.get(f"https://www.advantageonlineshopping.com/#/product/{id}")

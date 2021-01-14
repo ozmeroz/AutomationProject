@@ -15,3 +15,5 @@ class CategoryPage:
 
     def tablets_category(self):
         return self.driver.find_element_by_css_selector("div#tabletsImg")
+
+
