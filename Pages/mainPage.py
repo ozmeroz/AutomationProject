@@ -73,6 +73,11 @@ class MainPage:
     def product_color_black(self):
         return self.driver.find_element_by_class("BLACK")
 
+    def checkTotalItems(self):
+        self.hoverCart()
+        total=self.driver.find_element_by_css_selector(".ng-binding>label").text
+        return total
+
 
 
 

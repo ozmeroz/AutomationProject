@@ -39,9 +39,8 @@ class MyTestCase(unittest.TestCase):
         self.main.plus().click() #add quantity
         self.main.add_to_cart().click() #add to cart
         self.main.hoverCart() #hover over cart button to open cart summary
-        
-        self.actions
-        self.assertTrue(1==1)
+        self.assertIn("5", self.main.checkTotalItems())
+
 
 
 
