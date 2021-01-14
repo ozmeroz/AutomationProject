@@ -88,6 +88,9 @@ class MainPage:
             list.append(row.text)
         return list
 
+    def remove_from_minicart(self):
+        return self.driver.find_element_by_class_name("removeProduct")
+
 
 
 

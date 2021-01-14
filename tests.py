@@ -76,6 +76,17 @@ class MyTestCase(unittest.TestCase):
         self.assertIn("QTY: 4", list_pro[0])  # quantity
         self.assertIn("$1,916.00", list_pro[0])  # price
 
+    def test_ex3(self):
+        self.category.tablets_category().click()  # enter tablets category
+        self.tablets.tablets_elitepad()  # enter specific product
+        self.product.add_to_cart().click()  # add to cart
+        self.tablets.tablets_HPelite()  # enter specific product
+        self.product.plus().click()  # add quantity
+        self.product.add_to_cart().click()  # add to cart
+        self.main.hoverCart()
+        self.main.remove_from_minicart().click()
+        prodname =self.main.miniCartTable(0, 1).text
+        self.assertNotEqual(prodname,"HP ELITE X2 1011 G1 TABLET ")
 
 
     def test_ex_4(self):
@@ -96,6 +107,12 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue("tomoz"==signeduser.text) #check if signed user is our username
         self.main.logOut() #click logout
         self.assertNotIn(signeduser, self.main.getHeaderElements()) #check if signeduser name is not in all Header Elements list
+
+
+
+
+
+
 
 
 
