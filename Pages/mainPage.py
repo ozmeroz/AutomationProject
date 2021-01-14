@@ -75,8 +75,24 @@ class MainPage:
 
     def checkTotalItems(self):
         self.hoverCart()
+        self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".ng-binding>label")))
         total=self.driver.find_element_by_css_selector(".ng-binding>label").text
         return total
+
+    def miniCartTable(self, rowindex, cellindex):
+        'func that gets row num and cell num and returns the element in this place'
+        self.hoverCart()
+        #self.driver.find_element_by_css_selector("table[ng-show='cart.productsInCart.length > 0']")
+        table=self.driver.find_element_by_xpath("//tool-tip-cart/div/table")
+        rows = table.find_elements_by_tag_name("tr")
+        for row in rows:
+            if rows.index(row)==rowindex:
+                cells = row.find_elements_by_tag_name("td")
+                for cell in cells:
+                    if cells.index(cell)==cellindex:
+                        return cell
+
+
 
 
 
