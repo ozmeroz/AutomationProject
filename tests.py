@@ -56,15 +56,25 @@ class MyTestCase(unittest.TestCase):
         self.main.plus().click()  # add quantity
         self.main.plus().click()  # add quantity
         self.main.add_to_cart().click()  # add to cart
-        text1 = print(self.main.miniCartTable(2, 1).text)
-        price1 = print(self.main.miniCartTable(2, 2).text)
-        text2=print(self.main.miniCartTable(1,1).text)
-        price2=print(self.main.miniCartTable(1, 2).text)
-        # self.main.hoverCart()
-        self.wait.until(EC.visibility_of_element_located((By.XPATH, "//tool-tip-cart/div/table/tbody/tr[1]/td[3]")))
-        text3 = print(self.main.miniCartTable(0, 1).text)
-        self.main.hoverCart()
-        price3 = print(self.main.miniCartTable(0, 2).text)
+        text1 =self.main.miniCartTable(2, 1).text
+        self.assertIn("HP ELITEPAD 1000 G2", text1) #name
+        self.assertIn("BLUE", text1) #color
+        self.assertIn("QTY: 2", text1) #quantity
+        price1 = self.main.miniCartTable(2, 2).text
+        self.assertIn("$2,018.00", price1)  # price
+        text2=self.main.miniCartTable(1,1).text
+        self.assertIn("HP ELITE X2 1011 G1", text2)  # name
+        self.assertIn("BLACK", text2)  # color
+        self.assertIn("QTY: 3", text2)  # quantity
+        price2=self.main.miniCartTable(1, 2).text
+        self.assertIn("$3,837.00", price2)  # price
+        text3 =self.main.miniCartTable(0, 1).text
+        self.assertIn("HP PRO TABLET 608 G1", text3)  # name
+        self.assertIn("BLACK", text3)  # color
+        self.assertIn("QTY: 4", text3)  # quantity
+        # need to check why price3 in not readen to fix this check <<-----------
+        price3 = self.main.miniCartTable(0, 2).text
+        self.assertIn("$1,916.00", price3)  # price
 
 
 
