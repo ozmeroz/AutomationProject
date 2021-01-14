@@ -26,6 +26,13 @@ class MainPage:
         return self.driver.find_element_by_css_selector("button[id='sign_in_btnundefined']")
     def loggedUserName(self):
         return self.driver.find_element_by_css_selector("span.hi-user:nth-child(1)").text
+    def signedUserElement(self):
+        return self.driver.find_element_by_css_selector("span[class='hi-user containMiniTitle ng-binding']")
+    def logOut(self):
+        self.signedUserElement().click()
+        self.driver.find_element_by_xpath("//li[3]/a/div/label[3]").click()
+    def getHeaderElements(self):
+        return self.driver.find_elements_by_css_selector("header[ng-show='welcome']")
 
     def endtest(self):
         self.driver.find_element_by_css_selector(".logo").click()
