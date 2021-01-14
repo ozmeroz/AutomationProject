@@ -18,21 +18,33 @@ class MyTestCase(unittest.TestCase):
         self.driver.get("https://www.advantageonlineshopping.com/")
         self.driver.maximize_window()
         self.main = MainPage(self.driver)
-        #self.login()
+        self.actions = ActionChains(self.driver)
+        self.wait = WebDriverWait(self.driver, 10)
+
+
+
+
+
+    def test_ex1(self):
+        self.main.usermenu().click() #login
+        self.main.usernameField() #login
+        self.main.passwordField() #login
+        self.main.signInBtn().click() #login
+        self.main.tablets().click() #enter tablets category
+        self.main.tablets_elitepad() #enter specific product
+        self.main.plus().click() #add quantity
+        self.main.add_to_cart().click() #add to cart
+        self.main.tablets_HPelite() #enter specific product
+        self.main.plus().click() #add quantity
+        self.main.plus().click() #add quantity
+        self.main.add_to_cart().click() #add to cart
+        self.main.hoverCart() #hover over cart button to open cart summary
+        
+        self.actions
+        self.assertTrue(1==1)
+
+
 
     def tearDown(self):
-        self.driver.close()
-
-    def test_login(self):
-        time.sleep(5)
-        self.main.usermenu().click()
-        time.sleep(5)
-        self.main.usernameField()
-        time.sleep(1)
-        self.main.passwordField()
-        time.sleep(5)
-        self.main.signInBtn().click()
-        time.sleep(5)
-        self.assertTrue(self.main.loggedUserName() == 'tomoz')
-
+        self.main.endtest()
 
