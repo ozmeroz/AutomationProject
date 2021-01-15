@@ -39,11 +39,10 @@ class MyTestCase(unittest.TestCase):
         # self.main.signInBtn().click() #login
         self.category.tablets_category().click() #enter tablets category
         self.product.jumpToProductPage(16) #enter specific product
-        self.product.plus().click() #add quantity
+        self.product.plus(1).click() #add quantity
         self.product.add_to_cart().click() #add to cart
         self.product.jumpToProductPage(17) #enter specific product
-        self.product.plus().click() #add quantity
-        self.product.plus().click() #add quantity
+        self.product.plus(2).click() #add quantity
         self.product.add_to_cart().click() #add to cart
         self.main.hoverCart() #hover over cart button to open cart summary
         self.assertIn("5", self.main.checkTotalItems())
@@ -51,16 +50,14 @@ class MyTestCase(unittest.TestCase):
     def test_ex2(self):
         self.category.tablets_category().click()  # enter tablets category
         self.product.jumpToProductPage(16)  # enter specific product
-        self.product.plus().click()  # add quantity
+        self.product.plus(1).click()  # add quantity
         self.product.add_to_cart().click()  # add to cart
         self.product.jumpToProductPage(17)  # enter specific product
-        self.product.plus().click()  # add quantity
-        self.product.plus().click()  # add quantity
+        self.product.plus(2).click()  # add quantity
         self.product.add_to_cart().click()  # add to cart
         self.product.jumpToProductPage(18) # enter specific product
-        self.product.plus().click()  # add quantity
-        self.product.plus().click()  # add quantity
-        self.product.plus().click()  # add quantity
+        self.product.plus(3).click()  # add quantity
+
         self.product.add_to_cart().click()  # add to cart
         list_pro = self.main.miniCart()
         self.assertIn("HP ELITEPAD 1000 G2", list_pro[2]) #name
@@ -81,7 +78,7 @@ class MyTestCase(unittest.TestCase):
         self.tablets.tablets_elitepad()  # enter specific product
         self.product.add_to_cart().click()  # add to cart
         self.tablets.tablets_HPelite()  # enter specific product
-        self.product.plus().click()  # add quantity
+        self.product.plus(2).click()  # add quantity
         self.product.add_to_cart().click()  # add to cart
         self.main.hoverCart()
         self.main.remove_from_minicart().click()
@@ -97,6 +94,16 @@ class MyTestCase(unittest.TestCase):
         currentPage =self.driver.find_element_by_xpath("//nav/a[2]").text
         self.assertTrue(currentPage=="SHOPPING CART")
 
+    def test_ex_5(self):
+        self.product.jumpToProductPage(16) # specific product
+        self.product.plus(3)
+        self.product.add_to_cart().click()
+        self.product.jumpToProductPage(17)
+        self.product.plus(2)
+        self.product.add_to_cart().click()
+        self.product.jumpToProductPage(18)
+        self.product.plus(5)
+        self.product.add_to_cart().click()
 
     def test_ex10(self):
         self.main.usermenu().click() #login

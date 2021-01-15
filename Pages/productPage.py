@@ -14,11 +14,13 @@ class ProductPage:
         self.wait = WebDriverWait(driver, 10)
 
 
-    def plus(self):
-        return self.driver.find_element_by_css_selector("div[class='plus']")
+    def plus(self,qunt):
+        for times in range(qunt):
+            self.driver.find_element_by_css_selector("div[class='plus']").click()
 
-    def minus(self):
-        return self.driver.find_element_by_css_selector("div[class='minus']")
+    def minus(self,qunt):
+        for i in range(qunt):
+            return self.driver.find_element_by_css_selector("div[class='minus']")
 
     def add_to_cart(self):
         return self.driver.find_element_by_css_selector("button[translate='ADD_TO_CART']")
