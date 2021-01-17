@@ -7,11 +7,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.action_chains import ActionChains
+from Pages.mainPage import MainPage
 class Cart:
     def __init__(self, driver):
         self.driver = driver
         self.actions = ActionChains(self.driver)
         self.wait = WebDriverWait(driver, 10)
+        self.main=MainPage(self.driver)
 
     def cart(self):
         self.driver.find_element_by_id("menuCart")
@@ -54,12 +56,32 @@ class Cart:
         self.driver.find_element_by_css_selector("input[name='i_agree']").click()
         self.wait.until(EC.element_to_be_clickable((By.ID, "register_btnundefined")))
         self.driver.find_element_by_id("register_btnundefined").click()
+
+    def paybySafepay(self):
         self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[id='next_btn']")))
         self.driver.find_element_by_css_selector("button[id='next_btn']").click()
         self.driver.find_element_by_name("safepay_username").send_keys("tomozsafepay")
         self.driver.find_element_by_name("safepay_password").send_keys("To1234")
         self.wait.until(EC.element_to_be_clickable((By.ID, "pay_now_btn_SAFEPAY")))
         self.driver.find_element_by_id("pay_now_btn_SAFEPAY").click()
+
+    def checkIfOrderSucceed(self):
+        'function that checks if order suceed, if yes - returns the order number, else returns false'
+        self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "span[translate='Thank_you_for_buying_with_Advantage']")))
+        element=self.driver.find_element_by_css_selector("span[translate='Thank_you_for_buying_with_Advantage']")
+        if element.text=="Thank you for buying with Advantage":
+            return self.driver.find_element_by_id("orderNumberLabel").text
+        else:
+            return False
+    def checkIfCartIsEmpty(self):
+        'returns True for empty cart, False if cart is not empty'
+        self.main.hoverCart()
+        self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".emptyCart")))
+        cartext = self.driver.find_element_by_css_selector(".emptyCart").text
+        if "empty" in cartext:
+            return True
+        else:
+            return False
 
     def fill_creditCard(self):
         self.driver.find_element_by_id("creditCard").send_keys("123456789012")
@@ -71,6 +93,6 @@ class Cart:
         yy = Select(self.driver.find_element_by_name("yyyyListbox"))
         yy.select_by_index(7)
         self.driver.find_element_by_name("cardholder_name").send_keys("Tom Oz")
-        self.driver.find_element_by_name("save_master_credit").click()
+        #self.driver.find_element_by_name("save_master_credit").click()
         self.wait.until(EC.element_to_be_clickable((By.ID, "pay_now_btn_ManualPayment")))
         self.driver.find_element_by_id("pay_now_btn_ManualPayment").click()
