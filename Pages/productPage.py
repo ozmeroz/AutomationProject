@@ -23,5 +23,5 @@ class ProductPage:
             self.driver.find_element_by_css_selector("div[class='minus']").click()
 
     def add_to_cart(self):
-        return self.driver.find_element_by_css_selector("button[translate='ADD_TO_CART']")
+        self.driver.find_element_by_css_selector("button[translate='ADD_TO_CART']").click()
 

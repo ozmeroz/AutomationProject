@@ -10,6 +10,7 @@ import unittest
 from Pages.categoryPage import CategoryPage
 from Pages.mainPage import MainPage
 from Pages.productPage import ProductPage
+from Pages.cart import Cart
 class MyTestCase(unittest.TestCase):
 
 
@@ -24,7 +25,7 @@ class MyTestCase(unittest.TestCase):
         self.wait = WebDriverWait(self.driver, 10)
         self.category=CategoryPage(self.driver)
         self.product=ProductPage(self.driver)
-
+        self.cart = Cart(self.driver)
 
     def tearDown(self):
        self.main.endtest()
@@ -90,7 +91,7 @@ class MyTestCase(unittest.TestCase):
         self.driver.find_element_by_css_selector("#laptopsImg").click()
         self.category.jumpToProductByImage(7)    # enter specific product
         self.product.add_to_cart().click()
-        self.main.enterCartPage().click()
+        self.main.enterCartPage()
         self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#checkOutButton"))) #helps to wait for page to load
         currentPage =self.driver.find_element_by_xpath("//nav/a[2]").text
         self.assertTrue(currentPage=="SHOPPING CART")
@@ -109,6 +110,28 @@ class MyTestCase(unittest.TestCase):
         self.product.plus(5)    #add quantity
         self.product.add_to_cart().click()
 
+    def test_ex8(self):
+        self.main.jump_to_category("headphones")
+        self.category.jumpToProductByImage(15)
+        self.product.add_to_cart()
+        self.main.enterCartPage()
+        self.cart.checkout()
+        self.cart.newUserRegBtn() #clicks registration for new user
+        self.cart.fillNewUserForm()
+
+    def test_ex9(self):
+        self.main.jump_to_category("mice")
+        self.category.jumpToProductByImage(33)
+        self.product.add_to_cart()
+        self.main.enterCartPage()
+        self.cart.checkout()
+        self.cart.fill_username_in_order("tomoz")
+        self.cart.fill_password_in_order("tomOz123")
+        self.cart.click_login_in_order()
+        self.cart.next_btn_in_order()
+        self.cart.select_masterCredit()
+        self.cart.fill_creditCard()
+        'להריץ את טסט 9 אחרי 8 עם הפרטים של היוזר שיצרנו בטסט 8'
 
     def test_ex10(self):
         self.main.usermenu().click() #login

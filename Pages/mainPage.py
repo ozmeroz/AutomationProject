@@ -49,7 +49,7 @@ class MainPage:
         hover.perform()
 
     def enterCartPage(self):
-        return self.driver.find_element_by_css_selector("#shoppingCartLink")
+        self.driver.find_element_by_css_selector("#shoppingCartLink").click()
 
 
 
