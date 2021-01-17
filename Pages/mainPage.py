@@ -74,7 +74,7 @@ class MainPage:
                 cells = row.find_elements_by_tag_name("td")
                 for cell in cells:
                     if cells.index(cell)==cellindex:
-                        print(cell)
+                        print(cell.text)
                         return cell
 
 
