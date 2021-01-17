@@ -95,6 +95,12 @@ class MainPage:
     def remove_from_minicart(self):
         return self.driver.find_element_by_class_name("removeProduct")
 
+    def enterMyOrders(self):
+        self.driver.find_element_by_id("menuUser").click()
+        self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR, ".emptyCart")))
+        self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#loginMiniTitle > label:nth-child(2)")))
+        self.driver.find_element_by_css_selector("#loginMiniTitle > label:nth-child(2)").click()
+
 
     def miniCartTable111(self):
         'func that gets row num and cell num and returns the element in this place'

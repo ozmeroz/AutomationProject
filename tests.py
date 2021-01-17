@@ -10,7 +10,7 @@ import unittest
 from Pages.categoryPage import CategoryPage
 from Pages.mainPage import MainPage
 from Pages.productPage import ProductPage
-from Pages.cartPage import Cart_web_page
+from Pages.cart import Cart
 class MyTestCase(unittest.TestCase):
 
 
@@ -25,7 +25,7 @@ class MyTestCase(unittest.TestCase):
         self.wait = WebDriverWait(self.driver, 10)
         self.category=CategoryPage(self.driver)
         self.product=ProductPage(self.driver)
-        self.cart = Cart_web_page(self.driver)
+        self.cart = Cart(self.driver)
 
     def tearDown(self):
        self.main.endtest()
@@ -100,11 +100,11 @@ class MyTestCase(unittest.TestCase):
         self.main.jump_to_category("tablets")  # enter tablets category
         self.category.jumpToProductByImage(16)   # enter specific product
         self.product.plus(3)    #add quantity
-        self.product.add_to_cart()
+        self.product.add_to_cart().click()
         self.driver.back()  #back to tablets page
         self.category.jumpToProductByImage(17)   # enter specific product
         self.product.plus(2)    #add quantity
-        self.product.add_to_cart()
+        self.product.add_to_cart().click()
         self.driver.back()  #back to tablets page
         self.category.jumpToProductByImage(18)   # enter specific product
         self.product.plus(5)    #add quantity
@@ -126,6 +126,16 @@ class MyTestCase(unittest.TestCase):
         self.cart.checkout()
         self.cart.newUserRegBtn() #clicks registration for new user
         self.cart.fillNewUserForm()
+        self.cart.paybySafepay()
+        time.sleep(5)
+        ordernumber = self.cart.checkIfOrderSucceed() #returns order number if payment was successfull / return false if payment didnt made successfully
+        self.assertNotEqual(ordernumber,False) #check if payment made successfully
+        self.assertTrue(self.cart.checkIfCartIsEmpty()==True) #checks if cart is empty
+        self.main.enterMyOrders()
+        self.assertIn(ordernumber, self.order.ordersTableRowsText()) # checks if order number is in orders table of the user
+
+
+
 
     def test_ex9(self):
         self.main.jump_to_category("mice")
@@ -139,7 +149,11 @@ class MyTestCase(unittest.TestCase):
         self.cart.next_btn_in_order()
         self.cart.select_masterCredit()
         self.cart.fill_creditCard()
-        'להריץ את טסט 9 אחרי 8 עם הפרטים של היוזר שיצרנו בטסט 8'
+        ordernumber = self.cart.checkIfOrderSucceed()  # returns order number if payment was successfull
+        self.assertTrue(self.cart.checkIfCartIsEmpty() == True)  # checks if cart is empty
+        self.main.enterMyOrders()
+        self.assertIn(ordernumber, self.order.ordersTableRowsText())  # checks if order number is in orders table of the user
+
 
     def test_ex10(self):
         self.main.usermenu().click() #login
