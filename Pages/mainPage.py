@@ -96,5 +96,13 @@ class MainPage:
         return self.driver.find_element_by_class_name("removeProduct")
 
 
-
-
+    def miniCartTable111(self):
+        'func that gets row num and cell num and returns the element in this place'
+        self.hoverCart()
+        #self.driver.find_element_by_css_selector("table[ng-show='cart.productsInCart.length > 0']")
+        table=self.driver.find_element_by_xpath("//tool-tip-cart/div/table")
+        rows = table.find_elements_by_tag_name("tr")
+        for row in rows:
+            cells = row.find_elements_by_tag_name("td")
+            for cell in cells:
+                print(cell.text, " ", end='')

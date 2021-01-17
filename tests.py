@@ -10,7 +10,7 @@ import unittest
 from Pages.categoryPage import CategoryPage
 from Pages.mainPage import MainPage
 from Pages.productPage import ProductPage
-from Pages.cart import Cart
+from Pages.cartPage import Cart_web_page
 class MyTestCase(unittest.TestCase):
 
 
@@ -25,7 +25,7 @@ class MyTestCase(unittest.TestCase):
         self.wait = WebDriverWait(self.driver, 10)
         self.category=CategoryPage(self.driver)
         self.product=ProductPage(self.driver)
-        self.cart = Cart(self.driver)
+        self.cart = Cart_web_page(self.driver)
 
     def tearDown(self):
        self.main.endtest()
@@ -100,15 +100,23 @@ class MyTestCase(unittest.TestCase):
         self.main.jump_to_category("tablets")  # enter tablets category
         self.category.jumpToProductByImage(16)   # enter specific product
         self.product.plus(3)    #add quantity
-        self.product.add_to_cart().click()
+        self.product.add_to_cart()
         self.driver.back()  #back to tablets page
         self.category.jumpToProductByImage(17)   # enter specific product
         self.product.plus(2)    #add quantity
-        self.product.add_to_cart().click()
+        self.product.add_to_cart()
         self.driver.back()  #back to tablets page
         self.category.jumpToProductByImage(18)   # enter specific product
         self.product.plus(5)    #add quantity
-        self.product.add_to_cart().click()
+        self.product.add_to_cart()
+        prod_list=self.main.miniCart()
+        print(prod_list)
+        prod_list=str(prod_list)
+        print(prod_list.split("\n"))
+
+
+
+
 
     def test_ex8(self):
         self.main.jump_to_category("headphones")

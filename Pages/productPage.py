@@ -25,3 +25,16 @@ class ProductPage:
     def add_to_cart(self):
         self.driver.find_element_by_css_selector("button[translate='ADD_TO_CART']").click()
 
+    def ex_num(self,string):
+        num=[]
+        new_string=str(string)
+        new_list=new_string.split()
+        for char in new_list :
+            for letter in char:
+                if letter.isdigit()==True:
+                    num.append(char)
+                else:
+                    pass
+        return print(num)
+
+
