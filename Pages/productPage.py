@@ -25,5 +25,3 @@ class ProductPage:
     def add_to_cart(self):
         return self.driver.find_element_by_css_selector("button[translate='ADD_TO_CART']")
 
-    def jumpToProductByImage(self, id):
-        self.driver.find_element_by_css_selector(f"img[id='{id}']").click()

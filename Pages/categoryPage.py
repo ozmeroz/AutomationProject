@@ -13,7 +13,7 @@ class CategoryPage:
         self.actions = ActionChains(self.driver)
         self.wait = WebDriverWait(driver, 10)
 
-    def tablets_category(self):
-        return self.driver.find_element_by_css_selector("div#tabletsImg")
+    def jumpToProductByImage(self, id):
+        self.driver.find_element_by_css_selector(f"img[id='{id}']").click()
 
 

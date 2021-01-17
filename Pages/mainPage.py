@@ -34,6 +34,10 @@ class MainPage:
     def getHeaderElements(self):
         return self.driver.find_elements_by_css_selector("header[ng-show='welcome']")
 
+    def jump_to_category(self,category_name):
+        'function that gets the categoty name and jumps to that category from main page'
+        self.driver.find_element_by_css_selector(f"div#{category_name}Img").click()
+
     def endtest(self):
         self.driver.find_element_by_css_selector(".logo").click()
         time.sleep(2)

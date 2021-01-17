@@ -31,28 +31,28 @@ class MyTestCase(unittest.TestCase):
 
 
     def test_ex1(self):
-        self.category.tablets_category().click() #enter tablets category
-        self.product.jumpToProductByImage(16) #enter specific product
+        self.main.jump_to_category("tablets") #enter tablets category
+        self.category.jumpToProductByImage(16) #enter specific product
         self.product.plus(1) #add quantity
         self.product.add_to_cart().click() #add to cart
         self.driver.back()
-        self.product.jumpToProductByImage(17) #enter specific product
+        self.category.jumpToProductByImage(17) #enter specific product
         self.product.plus(2) #add quantity
         self.product.add_to_cart().click() #add to cart
         self.main.hoverCart() #hover over cart button to open cart summary
         self.assertIn("5", self.main.checkTotalItems())
 
     def test_ex2(self):
-        self.category.tablets_category().click()  # enter tablets category
-        self.product.jumpToProductByImage(16)   # enter specific product
+        self.main.jump_to_category("tablets")  # enter tablets category
+        self.category.jumpToProductByImage(16)   # enter specific product
         self.product.plus(1)  # add quantity
         self.product.add_to_cart().click()  # add to cart
         self.driver.back()
-        self.product.jumpToProductByImage(17)   # enter specific product
+        self.category.jumpToProductByImage(17)   # enter specific product
         self.product.plus(2)  # add quantity
         self.product.add_to_cart().click()  # add to cart
         self.driver.back()
-        self.product.jumpToProductByImage(18)   # enter specific product
+        self.category.jumpToProductByImage(18)   # enter specific product
         self.product.plus(3)  # add quantity
         self.product.add_to_cart().click()  # add to cart
         list_pro = self.main.miniCart()
@@ -70,11 +70,11 @@ class MyTestCase(unittest.TestCase):
         self.assertIn("$1,916.00", list_pro[0])  # price
 
     def test_ex3(self):
-        self.category.tablets_category().click()  # enter tablets category
-        self.product.jumpToProductByImage(16)  # enter specific product
+        self.main.jump_to_category("tablets")  # enter tablets category
+        self.category.jumpToProductByImage(16)  # enter specific product
         self.product.add_to_cart().click()  # add to cart
         self.driver.back()   # back to tablets category
-        self.product.jumpToProductByImage(17)  # enter specific product
+        self.category.jumpToProductByImage(17)  # enter specific product
         self.product.plus(2)  # add quantity
         self.product.add_to_cart().click()  # add to cart
         self.main.hoverCart()
@@ -88,7 +88,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_ex_4(self):
         self.driver.find_element_by_css_selector("#laptopsImg").click()
-        self.product.jumpToProductByImage(7)    # enter specific product
+        self.category.jumpToProductByImage(7)    # enter specific product
         self.product.add_to_cart().click()
         self.main.enterCartPage().click()
         self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#checkOutButton"))) #helps to wait for page to load
@@ -96,18 +96,19 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(currentPage=="SHOPPING CART")
 
     def test_ex_5(self):
-        self.category.tablets_category().click()  # enter tablets category
-        self.product.jumpToProductByImage(16)   # enter specific product
+        self.main.jump_to_category("tablets")  # enter tablets category
+        self.category.jumpToProductByImage(16)   # enter specific product
         self.product.plus(3)    #add quantity
         self.product.add_to_cart().click()
         self.driver.back()  #back to tablets page
-        self.product.jumpToProductByImage(17)   # enter specific product
+        self.category.jumpToProductByImage(17)   # enter specific product
         self.product.plus(2)    #add quantity
         self.product.add_to_cart().click()
         self.driver.back()  #back to tablets page
-        self.product.jumpToProductByImage(18)   # enter specific product
+        self.category.jumpToProductByImage(18)   # enter specific product
         self.product.plus(5)    #add quantity
         self.product.add_to_cart().click()
+
 
     def test_ex10(self):
         self.main.usermenu().click() #login
