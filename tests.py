@@ -136,7 +136,7 @@ class MyTestCase(unittest.TestCase):
         self.product.minus(1)
         self.driver.back()
         qnt_1_new=self.cart.quntity_in_cart(1)
-        qnt_2_new=self.cart.edit_from_cart(2)
+        qnt_2_new=self.cart.edit_from_cart(3)
         self.assertNotEqual(qnt_1,qnt_1_new)
         self.assertNotEqual(qnt_2,qnt_2_new)
 

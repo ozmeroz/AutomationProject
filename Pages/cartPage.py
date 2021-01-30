@@ -100,6 +100,7 @@ class Cart:
     def edit_from_cart(self,btn_num):
         edit_list=(self.driver.find_elements_by_css_selector("a.edit"))
         btn_num-=1
+
         return edit_list[btn_num]
 
     def quntity_in_cart(self,product):
