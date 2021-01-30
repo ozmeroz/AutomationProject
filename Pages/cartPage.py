@@ -96,3 +96,13 @@ class Cart:
         #self.driver.find_element_by_name("save_master_credit").click()
         self.wait.until(EC.element_to_be_clickable((By.ID, "pay_now_btn_ManualPayment")))
         self.driver.find_element_by_id("pay_now_btn_ManualPayment").click()
+
+    def edit_from_cart(self,btn_num):
+        edit_list=(self.driver.find_elements_by_css_selector("a.edit"))
+        btn_num-=1
+        return edit_list[btn_num]
+
+    def quntity_in_cart(self,product):
+        qnt_list=self.driver.find_elements_by_css_selector("table.fixedTableEdgeCompatibility>tbody>tr>td.quantityMobile")
+        product+=2
+        return print(qnt_list[1].text)
