@@ -232,8 +232,9 @@ class MyTestCase(unittest.TestCase):
         self.main.usernameField()  # login
         self.main.passwordField()  # login
         self.main.signInBtn().click()  # login
-        time.sleep(5)
         self.main.usermenu().click()
-        time.sleep(5)
         self.driver.find_element_by_css_selector("a>.mini-title>[translate='My_account']").click()
+        self.actions.send_keys(Keys.PAGE_DOWN).perform()
+        self.actions.send_keys(Keys.PAGE_DOWN).perform()
         self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".deleteMainBtnContainer"))).click()
+        self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".deleteRed"))).click()
