@@ -8,7 +8,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.action_chains import ActionChains
 from Pages.mainPage import MainPage
+
+
 class Order:
+
     def __init__(self, driver):
         self.driver = driver
         self.actions = ActionChains(self.driver)

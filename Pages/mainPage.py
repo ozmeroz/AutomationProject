@@ -17,20 +17,27 @@ class MainPage:
         self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#see_offer_btn"))) # wain until page loads
         element=self.driver.find_element_by_css_selector("#menuUser")
         return element
+
     def usernameField(self):
         return self.driver.find_element_by_css_selector("input[name='username']").send_keys("tomoz")
+
     def passwordField(self):
         return self.driver.find_element_by_css_selector("input[name='password']").send_keys("tomOz123")
+
     def signInBtn(self):
         self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,"button[id='sign_in_btnundefined']")))
         return self.driver.find_element_by_css_selector("button[id='sign_in_btnundefined']")
+
     def loggedUserName(self):
         return self.driver.find_element_by_css_selector("span.hi-user:nth-child(1)").text
+
     def signedUserElement(self):
         return self.driver.find_element_by_css_selector("span[class='hi-user containMiniTitle ng-binding']")
+
     def logOut(self):
         self.signedUserElement().click()
         self.driver.find_element_by_xpath("//li[3]/a/div/label[3]").click()
+
     def getHeaderElements(self):
         return self.driver.find_elements_by_css_selector("header[ng-show='welcome']")
 
@@ -40,7 +47,7 @@ class MainPage:
 
     def endtest(self):
         self.driver.find_element_by_css_selector(".logo").click()
-        time.sleep(2)
+        time.sleep(2) #just to see the home page before it closes
         self.driver.close()
 
     def hoverCart(self):
@@ -50,11 +57,6 @@ class MainPage:
 
     def enterCartPage(self):
         self.driver.find_element_by_css_selector("#shoppingCartLink").click()
-
-
-
-    ######def elitpad_to_tablets(self):
-        #####return self.driver.find_element_by_css_selector("div.uiview>nav>a.ng-scope")
 
     def product_color_black(self):
         return self.driver.find_element_by_class("BLACK")
@@ -68,7 +70,6 @@ class MainPage:
     def miniCartTable(self, rowindex, cellindex):
         'func that gets row num and cell num and returns the element in this place'
         self.hoverCart()
-        #self.driver.find_element_by_css_selector("table[ng-show='cart.productsInCart.length > 0']")
         table=self.driver.find_element_by_xpath("//tool-tip-cart/div/table")
         print(table.text)
 

@@ -73,6 +73,7 @@ class Cart:
             return self.driver.find_element_by_id("orderNumberLabel").text
         else:
             return False
+
     def checkIfCartIsEmpty(self):
         'returns True for empty cart, False if cart is not empty'
         self.main.hoverCart()
@@ -84,15 +85,17 @@ class Cart:
             return False
 
     def fill_creditCard(self):
-        self.driver.find_element_by_id("creditCard").send_keys("123456789012")
-        self.driver.find_element_by_name("cvv_number").send_keys("123")
-        self.driver.find_element_by_name("cvv_number").clear()
-        self.driver.find_element_by_name("cvv_number").send_keys("234")
+        'func that fills card input fields and clicks paynow button'
+        self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[name='card_number']"))).click()
+        self.driver.find_element_by_css_selector("input[name='card_number']").send_keys("123456789012")
+        self.driver.find_element_by_css_selector("input[name='cvv_number']").send_keys("123")
+        self.driver.find_element_by_css_selector("input[name='cvv_number']").clear()
+        self.driver.find_element_by_css_selector("input[name='cvv_number']").send_keys("234") #double fill to bypass the bug that skips the first digit
         mm = Select(self.driver.find_element_by_name("mmListbox"))
         mm.select_by_index(7)
         yy = Select(self.driver.find_element_by_name("yyyyListbox"))
         yy.select_by_index(7)
-        self.driver.find_element_by_name("cardholder_name").send_keys("Tom Oz")
-        #self.driver.find_element_by_name("save_master_credit").click()
-        self.wait.until(EC.element_to_be_clickable((By.ID, "pay_now_btn_ManualPayment")))
-        self.driver.find_element_by_id("pay_now_btn_ManualPayment").click()
+        self.driver.find_element_by_css_selector("input[name='cardholder_name']").send_keys("Tom Oz")
+        self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[name='card_number']"))).clear() #clear card number
+        self.driver.find_element_by_css_selector("input[name='card_number']").send_keys("123456789013") #and fill again because of bug that clears itself automaticlly
+        self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#pay_now_btn_ManualPayment"))).click()
