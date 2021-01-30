@@ -16,4 +16,5 @@ class CategoryPage:
     def jumpToProductByImage(self, id):
         self.driver.find_element_by_css_selector(f"img[id='{id}']").click()
 
-
+    def page_title(self):
+        return self.driver.find_element_by_class_name("categoryTitle").text

@@ -73,7 +73,6 @@ class Cart:
             return self.driver.find_element_by_id("orderNumberLabel").text
         else:
             return False
-
     def checkIfCartIsEmpty(self):
         'returns True for empty cart, False if cart is not empty'
         self.main.hoverCart()
@@ -95,7 +94,18 @@ class Cart:
         mm.select_by_index(7)
         yy = Select(self.driver.find_element_by_name("yyyyListbox"))
         yy.select_by_index(7)
-        self.driver.find_element_by_css_selector("input[name='cardholder_name']").send_keys("Tom Oz")
-        self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[name='card_number']"))).clear() #clear card number
-        self.driver.find_element_by_css_selector("input[name='card_number']").send_keys("123456789013") #and fill again because of bug that clears itself automaticlly
-        self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#pay_now_btn_ManualPayment"))).click()
+        self.driver.find_element_by_name("cardholder_name").send_keys("Tom Oz")
+        #self.driver.find_element_by_name("save_master_credit").click()
+        self.wait.until(EC.element_to_be_clickable((By.ID, "pay_now_btn_ManualPayment")))
+        self.driver.find_element_by_id("pay_now_btn_ManualPayment").click()
+
+    def edit_from_cart(self,btn_num):
+        edit_list=(self.driver.find_elements_by_css_selector("a.edit"))
+        btn_num-=1
+
+        return edit_list[btn_num]
+
+    def quntity_in_cart(self,product):
+        qnt_list=self.driver.find_elements_by_css_selector("table.fixedTableEdgeCompatibility>tbody>tr>td.quantityMobile")
+        product+=1
+        return qnt_list[product].text

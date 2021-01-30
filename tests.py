@@ -110,15 +110,60 @@ class MyTestCase(unittest.TestCase):
         self.driver.back()  #back to tablets page
         self.category.jumpToProductByImage(18)   # enter specific product
         self.product.plus(5)    #add quantity
+        self.category.jumpToProductByImage(16)  # enter specific product
+        self.product.plus(3)  # add quantity
         self.product.add_to_cart()
-        prod_list=self.main.miniCart()
-        print(prod_list)
-        prod_list=str(prod_list)
-        print(prod_list.split("\n"))
+        self.driver.back()  # back to tablets page
+        self.category.jumpToProductByImage(17)  # enter specific product
+        self.product.plus(2)  # add quantity
+        self.product.add_to_cart()
+        self.driver.back()  # back to tablets page
+        self.main.enterCartPage()
+        self.cart.remove_1()
+        self.product.minus(1)
+        self.driver.back()
+        self.cart.remove_2()
+        self.product.minus(1)
+        time.sleep(10)
+
+    def test_exe_6(self):
+        self.main.jump_to_category("tablets")  # enter tablets category
+        self.category.jumpToProductByImage(16)  # enter specific product
+        self.product.plus(3)  # add quantity
+        self.product.add_to_cart()
+        self.driver.back()  # back to tablets page
+        self.category.jumpToProductByImage(17)  # enter specific product
+        self.product.plus(2)  # add quantity
+        self.product.add_to_cart()
+        self.main.enterCartPage()
+        qnt_1=self.cart.edit_from_cart(1)
+        qnt_2=self.cart.edit_from_cart(2)
+        #self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR,"a.edit")))
+        self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR,"#toolTipCart")))
+        self.cart.edit_from_cart(1).click()
+        self.product.minus(1)
+        self.driver.back()
+        #self.wait.until(EC.visibility_of_any_elements_located((By.CSS_SELECTOR, "a.edit")))
+        self.cart.edit_from_cart(2).click()
+        self.product.minus(1)
+        self.driver.back()
+        qnt_1_new=self.cart.quntity_in_cart(1)
+        qnt_2_new=self.cart.edit_from_cart(3)
+        self.assertNotEqual(qnt_1,qnt_1_new)
+        self.assertNotEqual(qnt_2,qnt_2_new)
 
 
 
-
+    def test_ex7(self):
+        self.main.jump_to_category("tablets")  # enter tablets category
+        self.category.jumpToProductByImage(16)  # enter specific product
+        self.product.plus(3)  # add quantity
+        self.product.add_to_cart()
+        self.driver.back()
+        self.category.page_title()
+        self.assertIn(self.category.page_title(),"TABLETS")
+        self.driver.back()
+        self.assertIn(self.main.populer_items(),"POPULAR ITEMS")
 
     def test_ex08(self):
         self.main.jump_to_category("headphones")
