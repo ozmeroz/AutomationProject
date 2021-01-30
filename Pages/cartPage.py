@@ -114,3 +114,11 @@ class Cart:
         return qnt_list[product].text
     def get_quntity_by_row(self ,quantity):
         return self.driver.find_element_by_xpath(f"//tr[{quantity}]/td[5]/label[2]").text
+
+    def dealTotalPrice(self):
+        'function that returns the total price from cart page without (,) between digits'
+        total = self.driver.find_element_by_xpath("//td[2]/span[2]").text  # total price from cart page
+        total = list(total)
+        total.pop(2) # pop out the ','
+        total = ''.join(total)
+        return total

@@ -86,7 +86,7 @@ class MyTestCase(unittest.TestCase):
         products_in_cart=self.main.miniCart()
         print(products_in_cart)
         self.assertNotEqual(prodname,"HP ELITE X2 1011 G1 TABLET ")
-        'הפונקציה עובדת, אפשר לנסות לשפר ולהשתמש במיניקארט החדשה במקום בפונקציה הארוכה'
+
 
 
     def test_ex04(self):
@@ -116,21 +116,18 @@ class MyTestCase(unittest.TestCase):
         prod3 = self.product.savedetails()
         self.main.enterCartPage()
         self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR, "#toolTipCart")))
-        self.cart.edit_from_cart(3).click()
-        self.product.plus(2)
-        self.product.add_to_cart()
+        self.cart.edit_from_cart(3).click() #click the third's row edit button in cart
+        self.product.plus(2) #change quantity
+        self.product.add_to_cart()  #click add to cart and return to cart page
         self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR, "#toolTipCart")))
-        self.cart.edit_from_cart(3).click()
-        self.product.plus(1)
-        self.product.add_to_cart()
+        self.cart.edit_from_cart(3).click() #click the third's row edit button in cart
+        self.product.plus(1)    #change quantity
+        self.product.add_to_cart()  #click add to cart and return to cart page
         self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR, "#toolTipCart")))
-        self.cart.edit_from_cart(3).click()
-        self.product.minus(2)
-        self.product.add_to_cart()
-        total=self.driver.find_element_by_xpath("//td[2]/span[2]").text  #total price from cart page
-        total=list(total)
-        total.pop(2)
-        total=''.join(total)
+        self.cart.edit_from_cart(3).click() #click the third's row edit button in cart
+        self.product.minus(2)   #change quantity
+        self.product.add_to_cart() #click add to cart and return to cart page
+        totalfromcart=self.cart.dealTotalPrice() #get the total price from the Cart's page
         quantity3=self.cart.get_quntity_by_row(1)
         quantity2=self.cart.get_quntity_by_row(2)
         quantity1=self.cart.get_quntity_by_row(3)
@@ -140,7 +137,7 @@ class MyTestCase(unittest.TestCase):
         totalfromproducts=prod1[1]*int(quantity1)+prod2[1]*int(quantity2)+prod3[1]*int(quantity3) #sum all prices*quantities for products from product's page
         totalfromproducts=format(totalfromproducts, '.2f')
         totalfromproducts="$"+str(totalfromproducts)
-        self.assertEqual(totalfromproducts, total)
+        self.assertEqual(totalfromproducts, totalfromcart)
 
 
 
@@ -156,7 +153,6 @@ class MyTestCase(unittest.TestCase):
         self.main.enterCartPage() #go to cart page
         qnt_1=self.cart.quntity_in_cart(3) #saves the quntity before change
         qnt_2=self.cart.quntity_in_cart(4) #saves the quntity before change
-        #self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR,"a.edit")))
         self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR,"#toolTipCart"))) #waits for the pop up to disaaper
         self.cart.edit_from_cart(1).click() #press edit button
         self.product.minus(1) #change quntity
@@ -191,7 +187,6 @@ class MyTestCase(unittest.TestCase):
         self.cart.newUserRegBtn() #clicks registration for new user
         self.cart.fillNewUserForm()
         self.cart.paybySafepay()
-        time.sleep(5)
         ordernumber = self.cart.checkIfOrderSucceed() #returns order number if payment was successfull / return false if payment didnt made successfully
         self.assertNotEqual(ordernumber,False) #check if payment made successfully
         self.assertTrue(self.cart.checkIfCartIsEmpty()==True) #checks if cart is empty
@@ -236,7 +231,9 @@ class MyTestCase(unittest.TestCase):
         time.sleep(3)
         self.main.usermenu().click()
         self.driver.find_element_by_css_selector("a>.mini-title>[translate='My_account']").click()
+        time.sleep(3)
         self.actions.send_keys(Keys.PAGE_DOWN).perform()
         self.actions.send_keys(Keys.PAGE_DOWN).perform()
         self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".deleteMainBtnContainer"))).click()
         self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".deleteRed"))).click()
+        time.sleep(2)
