@@ -95,7 +95,8 @@ class Cart:
         yy = Select(self.driver.find_element_by_name("yyyyListbox"))
         yy.select_by_index(7)
         self.driver.find_element_by_name("cardholder_name").send_keys("Tom Oz")
-        #self.driver.find_element_by_name("save_master_credit").click()
+        self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[name='card_number']"))).clear()
+        self.driver.find_element_by_css_selector("input[name='card_number']").send_keys("123456789013")
         self.wait.until(EC.element_to_be_clickable((By.ID, "pay_now_btn_ManualPayment")))
         self.driver.find_element_by_id("pay_now_btn_ManualPayment").click()
 
