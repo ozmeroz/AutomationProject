@@ -232,6 +232,7 @@ class MyTestCase(unittest.TestCase):
         self.main.usernameField()  # login
         self.main.passwordField()  # login
         self.main.signInBtn().click()  # login
+        time.sleep(3)
         self.main.usermenu().click()
         self.driver.find_element_by_css_selector("a>.mini-title>[translate='My_account']").click()
         self.actions.send_keys(Keys.PAGE_DOWN).perform()
