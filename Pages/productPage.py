@@ -30,4 +30,20 @@ class ProductPage:
        for char in string:
         pass
 
+    def savedetails(self):
+        'function that returns list with full name and price of specipic product'
+        details=[]
+        details.append(self.driver.find_element_by_css_selector("h1.screen768").text)
+        price=self.driver.find_element_by_css_selector("h2.screen768").text
+        list(price)
+        newprice=''
+        for i in price:
+            if i.isnumeric() or i=='.':
+                newprice+=str(i)
+        newprice=float(newprice)
+        details.append(newprice)
+        return details
+
+
+
 

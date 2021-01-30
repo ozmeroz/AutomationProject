@@ -102,21 +102,45 @@ class MyTestCase(unittest.TestCase):
         self.main.jump_to_category("tablets")  # enter tablets category
         self.category.jumpToProductByImage(16)   # enter specific product
         self.product.plus(3)    #add quantity
+        prod1=self.product.savedetails()
         self.product.add_to_cart()
         self.driver.back()  #back to tablets page
         self.category.jumpToProductByImage(17)   # enter specific product
         self.product.plus(2)    #add quantity
+        prod2 = self.product.savedetails()
         self.product.add_to_cart()
         self.driver.back()  #back to tablets page
         self.category.jumpToProductByImage(18)   # enter specific product
         self.product.plus(5)    #add quantity
-        self.category.jumpToProductByImage(16)  # enter specific product
-        self.product.plus(3)  # add quantity
         self.product.add_to_cart()
-        self.driver.back()  # back to tablets page
-        self.category.jumpToProductByImage(17)  # enter specific product
-        self.product.plus(2)  # add quantity
+        prod3 = self.product.savedetails()
+        self.main.enterCartPage()
+        self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR, "#toolTipCart")))
+        self.cart.edit_from_cart(3).click()
+        self.product.plus(2)
         self.product.add_to_cart()
+        self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR, "#toolTipCart")))
+        self.cart.edit_from_cart(3).click()
+        self.product.plus(1)
+        self.product.add_to_cart()
+        self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR, "#toolTipCart")))
+        self.cart.edit_from_cart(3).click()
+        self.product.minus(2)
+        self.product.add_to_cart()
+        total=self.driver.find_element_by_xpath("//td[2]/span[2]").text  #total price from cart page
+        total=list(total)
+        total.pop(2)
+        total=''.join(total)
+        quantity3=self.driver.find_element_by_xpath("//tr[1]/td[5]/label[2]").text
+        quantity2=self.driver.find_element_by_xpath("//tr[2]/td[5]/label[2]").text
+        quantity1=self.driver.find_element_by_xpath("//tr[3]/td[5]/label[2]").text
+        print(prod1[0]+":\nQuantity: "+ quantity1 + "\nprice: "+ f"{prod1[1]}")
+        print(prod2[0]+":\nQuantity: "+ quantity2 + "\nprice: "+ f"{prod2[1]}")
+        print(prod3[0]+":\nQuantity: "+ quantity3 + "\nprice: "+ f"{prod3[1]}")
+        totalfromproducts=prod1[1]*int(quantity1)+prod2[1]*int(quantity2)+prod3[1]*int(quantity3) #sum all prices*quantities for products from product's page
+        totalfromproducts=format(totalfromproducts, '.2f')
+        totalfromproducts="$"+str(totalfromproducts)
+        self.assertEqual(totalfromproducts, total)
 
 
 
@@ -132,12 +156,10 @@ class MyTestCase(unittest.TestCase):
         self.main.enterCartPage()
         qnt_1=self.cart.quntity_in_cart(3)
         qnt_2=self.cart.quntity_in_cart(4)
-        #self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR,"a.edit")))
         self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR,"#toolTipCart")))
         self.cart.edit_from_cart(1).click()
         self.product.minus(1)
         self.product.add_to_cart()
-        #self.wait.until(EC.visibility_of_any_elements_located((By.CSS_SELECTOR, "a.edit")))
         self.cart.edit_from_cart(2).click()
         self.product.minus(1)
         self.product.add_to_cart()
