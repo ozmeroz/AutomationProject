@@ -131,9 +131,6 @@ class MyTestCase(unittest.TestCase):
         total=list(total)
         total.pop(2)
         total=''.join(total)
-        # quantity3=self.driver.find_element_by_xpath("//tr[1]/td[5]/label[2]").text
-        # quantity2=self.driver.find_element_by_xpath("//tr[2]/td[5]/label[2]").text
-        # quantity1=self.driver.find_element_by_xpath("//tr[3]/td[5]/label[2]").text
         quantity3=self.cart.get_quntity_by_row(1)
         quantity2=self.cart.get_quntity_by_row(2)
         quantity1=self.cart.get_quntity_by_row(3)
@@ -147,7 +144,7 @@ class MyTestCase(unittest.TestCase):
 
 
 
-    def test_exe_6(self):
+    def test_ex06(self):
         self.main.jump_to_category("tablets")  # enter tablets category
         self.category.jumpToProductByImage(16)  # enter specific product
         self.product.plus(3)  # add quantity
@@ -164,7 +161,6 @@ class MyTestCase(unittest.TestCase):
         self.cart.edit_from_cart(1).click() #press edit button
         self.product.minus(1) #change quntity
         self.product.add_to_cart() #add to cart
-        #self.wait.until(EC.visibility_of_any_elements_located((By.CSS_SELECTOR, "a.edit")))
         self.cart.edit_from_cart(2).click() #press edit button
         self.product.minus(1) #change quntity
         self.product.add_to_cart() #add product to cart
@@ -175,7 +171,7 @@ class MyTestCase(unittest.TestCase):
 
 
 
-    def test_ex7(self):
+    def test_ex07(self):
         self.main.jump_to_category("tablets")  # enter tablets category
         self.category.jumpToProductByImage(16)  # enter specific product
         self.product.plus(3)  # add quantity
