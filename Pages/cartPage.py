@@ -104,5 +104,5 @@ class Cart:
 
     def quntity_in_cart(self,product):
         qnt_list=self.driver.find_elements_by_css_selector("table.fixedTableEdgeCompatibility>tbody>tr>td.quantityMobile")
-        product+=2
-        return print(qnt_list[1].text)
+        product+=1
+        return qnt_list[product].text
