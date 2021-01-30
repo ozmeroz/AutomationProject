@@ -56,6 +56,7 @@ class MainPage:
         hover.perform()
 
     def enterCartPage(self):
+        'opens the cartpage menu'
         self.driver.find_element_by_css_selector("#shoppingCartLink").click()
 
     def product_color_black(self):
@@ -103,6 +104,7 @@ class MainPage:
         self.driver.find_element_by_css_selector("#loginMiniTitle > label:nth-child(2)").click()
 
     def populer_items(self):
+        'get the text out of populer items in the main page'
         return self.driver.find_element_by_css_selector('h3[translate="POPULAR_ITEMS"]').text
 
 

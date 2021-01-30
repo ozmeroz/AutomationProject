@@ -131,9 +131,12 @@ class MyTestCase(unittest.TestCase):
         total=list(total)
         total.pop(2)
         total=''.join(total)
-        quantity3=self.driver.find_element_by_xpath("//tr[1]/td[5]/label[2]").text
-        quantity2=self.driver.find_element_by_xpath("//tr[2]/td[5]/label[2]").text
-        quantity1=self.driver.find_element_by_xpath("//tr[3]/td[5]/label[2]").text
+        # quantity3=self.driver.find_element_by_xpath("//tr[1]/td[5]/label[2]").text
+        # quantity2=self.driver.find_element_by_xpath("//tr[2]/td[5]/label[2]").text
+        # quantity1=self.driver.find_element_by_xpath("//tr[3]/td[5]/label[2]").text
+        quantity3=self.cart.get_quntity_by_row(1)
+        quantity2=self.cart.get_quntity_by_row(2)
+        quantity1=self.cart.get_quntity_by_row(3)
         print(prod1[0]+":\nQuantity: "+ quantity1 + "\nprice: "+ f"{prod1[1]}")
         print(prod2[0]+":\nQuantity: "+ quantity2 + "\nprice: "+ f"{prod2[1]}")
         print(prod3[0]+":\nQuantity: "+ quantity3 + "\nprice: "+ f"{prod3[1]}")
@@ -148,25 +151,27 @@ class MyTestCase(unittest.TestCase):
         self.main.jump_to_category("tablets")  # enter tablets category
         self.category.jumpToProductByImage(16)  # enter specific product
         self.product.plus(3)  # add quantity
-        self.product.add_to_cart()
+        self.product.add_to_cart() #add to cart
         self.driver.back()  # back to tablets page
         self.category.jumpToProductByImage(17)  # enter specific product
         self.product.plus(2)  # add quantity
-        self.product.add_to_cart()
-        self.main.enterCartPage()
-        qnt_1=self.cart.quntity_in_cart(3)
-        qnt_2=self.cart.quntity_in_cart(4)
-        self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR,"#toolTipCart")))
-        self.cart.edit_from_cart(1).click()
-        self.product.minus(1)
-        self.product.add_to_cart()
-        self.cart.edit_from_cart(2).click()
-        self.product.minus(1)
-        self.product.add_to_cart()
-        qnt_1_new=self.cart.quntity_in_cart(1)
-        qnt_2_new=self.cart.quntity_in_cart(2)
-        self.assertNotEqual(qnt_1,qnt_1_new)
-        self.assertNotEqual(qnt_2,qnt_2_new)
+        self.product.add_to_cart() #add to cart
+        self.main.enterCartPage() #go to cart page
+        qnt_1=self.cart.quntity_in_cart(3) #saves the quntity before change
+        qnt_2=self.cart.quntity_in_cart(4) #saves the quntity before change
+        #self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR,"a.edit")))
+        self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR,"#toolTipCart"))) #waits for the pop up to disaaper
+        self.cart.edit_from_cart(1).click() #press edit button
+        self.product.minus(1) #change quntity
+        self.product.add_to_cart() #add to cart
+        #self.wait.until(EC.visibility_of_any_elements_located((By.CSS_SELECTOR, "a.edit")))
+        self.cart.edit_from_cart(2).click() #press edit button
+        self.product.minus(1) #change quntity
+        self.product.add_to_cart() #add product to cart
+        qnt_1_new=self.cart.quntity_in_cart(1) #new quntity
+        qnt_2_new=self.cart.quntity_in_cart(2) #new quntity
+        self.assertNotEqual(qnt_1,qnt_1_new) # check if the quntity has changed
+        self.assertNotEqual(qnt_2,qnt_2_new) # check if the quntity has changed
 
 
 

@@ -100,12 +100,16 @@ class Cart:
         self.driver.find_element_by_id("pay_now_btn_ManualPayment").click()
 
     def edit_from_cart(self,btn_num):
+        "chooses which product you want to edit from the shopping cart"
         edit_list=(self.driver.find_elements_by_css_selector("a.edit"))
         btn_num-=1
 
         return edit_list[btn_num]
 
     def quntity_in_cart(self,product):
+        'shows the amount of specific product in the cart'
         qnt_list=self.driver.find_elements_by_css_selector("table.fixedTableEdgeCompatibility>tbody>tr>td.quantityMobile>label")
         product+=1
         return qnt_list[product].text
+    def get_quntity_by_row(self ,quantity):
+        return self.driver.find_element_by_xpath(f"//tr[{quantity}]/td[5]/label[2]").text

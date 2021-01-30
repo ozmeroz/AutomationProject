@@ -17,4 +17,5 @@ class CategoryPage:
         self.driver.find_element_by_css_selector(f"img[id='{id}']").click()
 
     def page_title(self):
+        "gets the title from the category page"
         return self.driver.find_element_by_class_name("categoryTitle").text
