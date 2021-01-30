@@ -106,6 +106,6 @@ class Cart:
         return edit_list[btn_num]
 
     def quntity_in_cart(self,product):
-        qnt_list=self.driver.find_elements_by_css_selector("table.fixedTableEdgeCompatibility>tbody>tr>td.quantityMobile")
+        qnt_list=self.driver.find_elements_by_css_selector("table.fixedTableEdgeCompatibility>tbody>tr>td.quantityMobile>label")
         product+=1
         return qnt_list[product].text

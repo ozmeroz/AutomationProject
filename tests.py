@@ -117,14 +117,8 @@ class MyTestCase(unittest.TestCase):
         self.category.jumpToProductByImage(17)  # enter specific product
         self.product.plus(2)  # add quantity
         self.product.add_to_cart()
-        self.driver.back()  # back to tablets page
-        self.main.enterCartPage()
-        self.cart.remove_1()
-        self.product.minus(1)
-        self.driver.back()
-        self.cart.remove_2()
-        self.product.minus(1)
-        time.sleep(10)
+
+
 
     def test_exe_6(self):
         self.main.jump_to_category("tablets")  # enter tablets category
@@ -136,19 +130,19 @@ class MyTestCase(unittest.TestCase):
         self.product.plus(2)  # add quantity
         self.product.add_to_cart()
         self.main.enterCartPage()
-        qnt_1=self.cart.edit_from_cart(1)
-        qnt_2=self.cart.edit_from_cart(2)
+        qnt_1=self.cart.quntity_in_cart(3)
+        qnt_2=self.cart.quntity_in_cart(4)
         #self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR,"a.edit")))
         self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR,"#toolTipCart")))
         self.cart.edit_from_cart(1).click()
         self.product.minus(1)
-        self.driver.back()
+        self.product.add_to_cart()
         #self.wait.until(EC.visibility_of_any_elements_located((By.CSS_SELECTOR, "a.edit")))
         self.cart.edit_from_cart(2).click()
         self.product.minus(1)
-        self.driver.back()
+        self.product.add_to_cart()
         qnt_1_new=self.cart.quntity_in_cart(1)
-        qnt_2_new=self.cart.edit_from_cart(3)
+        qnt_2_new=self.cart.quntity_in_cart(2)
         self.assertNotEqual(qnt_1,qnt_1_new)
         self.assertNotEqual(qnt_2,qnt_2_new)
 
