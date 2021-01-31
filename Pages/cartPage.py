@@ -21,6 +21,7 @@ class Cart:
     def checkout(self):
         time.sleep(2)
         self.driver.find_element_by_id("checkOutButton").click()
+
     def fill_username_in_order(self, username):
         self.driver.find_element_by_name("usernameInOrderPayment").send_keys(username)
 
