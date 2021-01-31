@@ -116,11 +116,11 @@ class MyTestCase(unittest.TestCase):
         prod3 = self.product.savedetails()
         self.main.enterCartPage()
         self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR, "#toolTipCart")))
-        self.cart.edit_from_cart(3).click() #click the third's row edit button in cart
+        self.cart.edit_from_cart(1).click() #click the first row edit button in cart
         self.product.plus(2) #change quantity
         self.product.add_to_cart()  #click add to cart and return to cart page
         self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR, "#toolTipCart")))
-        self.cart.edit_from_cart(3).click() #click the third's row edit button in cart
+        self.cart.edit_from_cart(2).click() #click the secend row edit button in cart
         self.product.plus(1)    #change quantity
         self.product.add_to_cart()  #click add to cart and return to cart page
         self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR, "#toolTipCart")))
@@ -162,7 +162,7 @@ class MyTestCase(unittest.TestCase):
         qnt_2_new=self.cart.get_quntity_by_row(2) #new quntity
         self.assertNotEqual(qnt_1,qnt_1_new) # check if the quntity has changed
         self.assertNotEqual(qnt_2,qnt_2_new) # check if the quntity has changed
-
+        'bug in the website - quantity most of the time doesnt change'
 
 
     def test_ex07(self):
