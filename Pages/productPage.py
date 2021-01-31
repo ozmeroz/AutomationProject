@@ -35,10 +35,10 @@ class ProductPage:
         details=[]
         details.append(self.driver.find_element_by_css_selector("h1.screen768").text)
         price=self.driver.find_element_by_css_selector("h2.screen768").text
-        list(price)
-        newprice=''
+        list(price) #cast price to list
+        newprice='' #empty string
         for i in price:
-            if i.isnumeric() or i=='.':
+            if i.isnumeric() or i=='.':  #takes only numbers and '.'
                 newprice+=str(i)
         newprice=float(newprice)
         details.append(newprice)

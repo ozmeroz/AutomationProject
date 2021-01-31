@@ -86,11 +86,11 @@ class MyTestCase(unittest.TestCase):
         products_in_cart=self.main.miniCart()
         print(products_in_cart)
         self.assertNotEqual(prodname,"HP ELITE X2 1011 G1 TABLET ")
-
+        'fix this mdrfkr'
 
 
     def test_ex04(self):
-        self.driver.find_element_by_css_selector("#laptopsImg").click()
+        self.main.jump_to_category("laptops")
         self.category.jumpToProductByImage(7)    # enter specific product
         self.product.add_to_cart()
         self.main.enterCartPage()
@@ -135,11 +135,9 @@ class MyTestCase(unittest.TestCase):
         print(prod2[0]+":\nQuantity: "+ quantity2 + "\nprice: "+ f"{prod2[1]}")
         print(prod3[0]+":\nQuantity: "+ quantity3 + "\nprice: "+ f"{prod3[1]}")
         totalfromproducts=prod1[1]*int(quantity1)+prod2[1]*int(quantity2)+prod3[1]*int(quantity3) #sum all prices*quantities for products from product's page
-        totalfromproducts=format(totalfromproducts, '.2f')
+        totalfromproducts=format(totalfromproducts, '.2f') #formats the float number with 2 digits after the .
         totalfromproducts="$"+str(totalfromproducts)
         self.assertEqual(totalfromproducts, totalfromcart)
-
-
 
     def test_ex06(self):
         self.main.jump_to_category("tablets")  # enter tablets category

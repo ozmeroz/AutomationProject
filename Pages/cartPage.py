@@ -108,13 +108,9 @@ class Cart:
 
         return edit_list[btn_num]
 
-    def quntity_in_cart(self,product):
-        'shows the amount of specific product in the cart'
-        qnt_list=self.driver.find_elements_by_css_selector("table.fixedTableEdgeCompatibility>tbody>tr>td.quantityMobile>label")
-        product+=1
-        return qnt_list[product].text
-    def get_quntity_by_row(self ,quantity):
-        return self.driver.find_element_by_xpath(f"//tr[{quantity}]/td[5]/label[2]").text
+    def get_quntity_by_row(self ,rownum):
+        'function that gets row number and return the quantity in text'
+        return self.driver.find_element_by_xpath(f"//tr[{rownum}]/td[5]/label[2]").text
 
     def dealTotalPrice(self):
         'function that returns the total price from cart page without (,) between digits'
