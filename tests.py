@@ -149,8 +149,8 @@ class MyTestCase(unittest.TestCase):
         self.product.plus(2)  # add quantity
         self.product.add_to_cart() #add to cart
         self.main.enterCartPage() #go to cart page
-        qnt_1=self.cart.quntity_in_cart(3) #saves the quntity before change
-        qnt_2=self.cart.quntity_in_cart(4) #saves the quntity before change
+        qnt_1=self.cart.get_quntity_by_row(1) #saves the quntity before change
+        qnt_2=self.cart.get_quntity_by_row(2) #saves the quntity before change
         self.wait.until(EC.invisibility_of_element((By.CSS_SELECTOR,"#toolTipCart"))) #waits for the pop up to disaaper
         self.cart.edit_from_cart(1).click() #press edit button
         self.product.minus(1) #change quntity
@@ -158,8 +158,8 @@ class MyTestCase(unittest.TestCase):
         self.cart.edit_from_cart(2).click() #press edit button
         self.product.minus(1) #change quntity
         self.product.add_to_cart() #add product to cart
-        qnt_1_new=self.cart.quntity_in_cart(1) #new quntity
-        qnt_2_new=self.cart.quntity_in_cart(2) #new quntity
+        qnt_1_new=self.cart.get_quntity_by_row(1) #new quntity
+        qnt_2_new=self.cart.get_quntity_by_row(2) #new quntity
         self.assertNotEqual(qnt_1,qnt_1_new) # check if the quntity has changed
         self.assertNotEqual(qnt_2,qnt_2_new) # check if the quntity has changed
 
