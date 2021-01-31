@@ -183,8 +183,8 @@ class MyTestCase(unittest.TestCase):
         self.main.enterCartPage()
         self.cart.checkout()
         self.cart.newUserRegBtn() #clicks registration for new user
-        self.cart.fillNewUserForm()
-        self.cart.paybySafepay()
+        self.cart.fillNewUserForm() # fills all registration form
+        self.cart.paybySafepay() # fills SafePay username and password and click paynow
         ordernumber = self.cart.checkIfOrderSucceed() #returns order number if payment was successfull / return false if payment didnt made successfully
         self.assertNotEqual(ordernumber,False) #check if payment made successfully
         self.assertTrue(self.cart.checkIfCartIsEmpty()==True) #checks if cart is empty
